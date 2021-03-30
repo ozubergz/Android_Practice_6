@@ -13,31 +13,10 @@ import com.example.android_practice_6.adapter.ShibeAdapter
 import com.example.android_practice_6.databinding.ActivityMainBinding
 import com.example.android_practice_6.viewmodel.MainViewModel
 
-class MainActivity : AppCompatActivity(), ClickListener {
-
-    private lateinit var binding: ActivityMainBinding
-    private val viewModel by viewModels<MainViewModel>()
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        viewModel.fetchShibes(5)
-
-        binding.apply {
-            viewModel.shibes.observe(this@MainActivity, {
-                rvList.apply {
-                    adapter = ShibeAdapter(it, this@MainActivity)
-                    layoutManager = LinearLayoutManager(context)
-                }
-            })
-        }
-    }
-
-    override fun itemClick(shibe: String) {
-        val intent = Intent(this, DetailActivity::class.java)
-        intent.putExtra("URL", shibe)
-        startActivity(intent)
+        setContentView(R.layout.activity_main)
     }
 }
