@@ -9,5 +9,4 @@ interface ShibeService {
 
     @GET("shibes")
     suspend fun fetchShibes(@Query("count") count: Int) : Response<List<String>>
-
 }
